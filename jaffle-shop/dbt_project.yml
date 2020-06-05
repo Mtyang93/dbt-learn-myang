@@ -1,0 +1,10 @@
+name: jaffle_shop # this normally says my_new_package
+version: '1.0'
+
+
+profile: jaffle_shop # this normally says default
+
+
+
+models:
+  jaffle_shop: #this normally says my_new_package. It should match the value for `name:`
