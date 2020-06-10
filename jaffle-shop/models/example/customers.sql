@@ -40,6 +40,30 @@ final as (
 
     left join customer_orders using (customer_id)
 
+),
+
+order_total as (
+
+    select
+        orders.customer_id,
+        sum(payments.amount) as life_time_value
+    from orders
+    left join {{ ref('payments') }}
+    on orders.order_id = payments.order_id
+    where payments.status != 'fail'
+    group by 1
+
+),
+
+final_customers as (
+
+    select
+        final.*,
+        coalesce(order_total.life_time_value, 0) as customer_life_time
+    from final
+    left join order_total
+    on order_total.customer_id = final.customer_id
+
 )
 
-select * from final
+select* from final_customers
