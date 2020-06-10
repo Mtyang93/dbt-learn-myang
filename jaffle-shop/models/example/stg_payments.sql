@@ -4,5 +4,5 @@ select
     ,status
     ,ID as payment_id
     ,round(amount/100) as amount
-from raw.stripe.payment
+from {{ source('stripe', 'payment') }}
 

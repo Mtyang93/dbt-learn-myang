@@ -34,4 +34,28 @@ models:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
 
-  - name: payments
+  - name: orders
+    columns:
+    - name: customer_id
+      description: >
+        customer_id and how much did they order
+      tests:
+        - not_null
+
+  - name: stg_payments
+
+sources:
+  - name: jaffle_shop
+    database: raw
+    schema: jaffle_shop
+
+    tables:
+      - name: orders
+      - name: customers
+
+  - name: stripe
+    database: raw
+    schema: stripe
+
+    tables:
+      - name: payment
