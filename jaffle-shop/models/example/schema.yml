@@ -43,6 +43,7 @@ models:
         - not_null
 
   - name: stg_payments
+  - name: payments
 
 sources:
   - name: jaffle_shop
