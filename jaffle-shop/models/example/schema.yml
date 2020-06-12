@@ -41,6 +41,7 @@ models:
         customer_id and how much did they order
       tests:
         - not_null
+        - unique_threshold
 
   - name: stg_payments
   - name: payments
@@ -60,3 +61,23 @@ sources:
 
     tables:
       - name: payment
+
+  - name: learn_stripe
+    database: raw
+    schema: learn_stripe
+
+    tables:
+      - name: refunds
+      - name: charges
+
+  - name: ticket_tailor
+    database: raw
+    schema: ticket_tailor
+
+    tables:
+      - name: orders
+
+
+
+
+
